@@ -12,10 +12,10 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
 // Router - have to create these files first
-// require("/routes/apiRoutes")(app);
-// require("./routes/htmlRoutes")(app);
+require("./routes/apiRoutes.js")(app);
+require("./routes/htmlRoutes.js")(app);
 
 // Listener
 app.listen(PORT, function() {
-    console.log("This application is listening onf PORT:" + PORT);
+    console.log("This application is listening on PORT:" + PORT);
 });
