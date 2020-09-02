@@ -10,12 +10,13 @@ const PORT = process.env.PORT || 3000;
 // set up express to handle data parsing
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
+app.use(express.static("public"));
 
-// Router - have to create these files first
+// Router 
 require("./routes/apiRoutes.js")(app);
 require("./routes/htmlRoutes.js")(app);
 
 // Listener
 app.listen(PORT, function() {
-    console.log("This application is listening on PORT:" + PORT);
+    console.log(`This application is listening on PORT: ${PORT}`);
 });
