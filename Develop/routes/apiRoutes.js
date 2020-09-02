@@ -19,16 +19,12 @@ module.exports = function (app) {
         note.id = noteId;
         console.log(note);
 
+    // this writes the new note and past notes onto the page
         fs.readFile('./db/db.json', 'utf8', (error, file) => {
             if (error) throw error;
-            // parse db.json into a JSON object
             const parsedFile = JSON.parse(file);
-            // push the new note onto the JSON object
             parsedFile.push(note);
-            // Create new stringify of the combined file to write back to file
             const newStringifiedFile = JSON.stringify(parsedFile);
-            // notesData = parsedFile;
-            // re-write the file as the combined file
             fs.writeFile('./db/db.json', newStringifiedFile, 'utf8', (err) => {
                 if (err) throw err;
                 console.log("The new note was appended to the file!");
@@ -37,18 +33,14 @@ module.exports = function (app) {
             });
         });
     });
-
+    // this deletes a note and writes all notes (minus the deleted notes) onto the page
     app.delete("/api/notes/:id", function (req, res) {
         console.log(Number(req.params.id));
         fs.readFile('./db/db.json', 'utf8', (error, file) => {
             if (error) throw error;
-            // parse db.json into a JSON object
             const parsedFile = JSON.parse(file);
             const result = parsedFile.filter(note => note.id !== Number(req.params.id));
-            // notesData = result;
-            // Create new stringify of the combined file to write back to file
             const newStringifiedFile = JSON.stringify(result);
-            // re-write the file as the combined file
             fs.writeFile('./db/db.json', newStringifiedFile, 'utf8', (err) => {
                 if (err) throw err;
                 res.json(req.params.id);
