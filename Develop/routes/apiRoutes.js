@@ -14,10 +14,8 @@ module.exports = function (app) {
     // This pushes the recent note into the .json file but not onto the page
     app.post("/api/notes", function (req, res) {
         let note = req.body;
-        console.log(req.body);
         let noteId = Date.now();
         note.id = noteId;
-        console.log(note);
 
     // this writes the new note and past notes onto the page
         fs.readFile('./db/db.json', 'utf8', (error, file) => {
@@ -27,7 +25,7 @@ module.exports = function (app) {
             const newStringifiedFile = JSON.stringify(parsedFile);
             fs.writeFile('./db/db.json', newStringifiedFile, 'utf8', (err) => {
                 if (err) throw err;
-                console.log("The new note was appended to the file!");
+                console.log("One note has been added.");
                 res.json(note);
 
             });
@@ -35,7 +33,6 @@ module.exports = function (app) {
     });
     // this deletes a note and writes all notes (minus the deleted notes) onto the page
     app.delete("/api/notes/:id", function (req, res) {
-        console.log(Number(req.params.id));
         fs.readFile('./db/db.json', 'utf8', (error, file) => {
             if (error) throw error;
             const parsedFile = JSON.parse(file);
@@ -43,6 +40,7 @@ module.exports = function (app) {
             const newStringifiedFile = JSON.stringify(result);
             fs.writeFile('./db/db.json', newStringifiedFile, 'utf8', (err) => {
                 if (err) throw err;
+                console.log(`One note has been deleted.`)
                 res.json(req.params.id);
             });
         });
