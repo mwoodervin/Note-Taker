@@ -30,8 +30,10 @@
   I WANT to be able to write, save and delete notes
   SO THAT I can organize and track tasks
   ```
+![landing page](https://user-images.githubusercontent.com/65414966/92262285-e27d4b80-eea8-11ea-89ae-9a65349106c1.png)
 
-  
+![notes page](https://user-images.githubusercontent.com/65414966/92262148-af3abc80-eea8-11ea-9604-3b7f0508df04.png)
+
 
   ## CONTACT
   If you are interested in contacting me about this application, you can find me on [github](https://github.com/mwoodervin) or email me at mwoodervin@gmail.com.
